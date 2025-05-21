@@ -30,6 +30,26 @@ ul.sitemap li {
   margin-bottom: 0.5rem;
 }
 
+ul li a:link {
+  color: #1e40af;       /* สีลิงก์ที่ยังไม่คลิก */
+  text-decoration: none;
+  font-weight: bold;
+}
+
+ul li a:visited {
+  color: #6b7280;       /* สีลิงก์ที่เคยคลิก */
+}
+
+ul li a:hover {
+  color: #ef4444;       /* สีลิงก์เมื่อเมาส์ชี้ */
+  text-decoration: underline;
+}
+
+ul li a:active {
+  color: #10b981;       /* สีลิงก์ขณะคลิก */
+}
+
+
 ul.sitemap li ul {
   margin-left: 1.5rem;
   display: none;
