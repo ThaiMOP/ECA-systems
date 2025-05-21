@@ -1,9 +1,15 @@
-// เลือก toggle ทุกตัว (ไอคอนหมวดหลัก)
 document.querySelectorAll('.toggle').forEach(toggle => {
   toggle.addEventListener('click', () => {
-    const parentLi = toggle.parentElement;
+    const sitemap = document.querySelector('.sitemap');
+    const allLi = sitemap.querySelectorAll('li');
 
-    // toggle class 'open' เพื่อแสดงหรือซ่อนเมนูย่อย
-    parentLi.classList.toggle('open');
+    // เอา class 'open' ออกจากทุก li
+    allLi.forEach(li => li.classList.remove('open'));
+
+    // เพิ่ม class 'open' ให้กับ li แรกใน sitemap
+    const firstLi = sitemap.querySelector('li');
+    if (firstLi) {
+      firstLi.classList.add('open');
+    }
   });
 });
