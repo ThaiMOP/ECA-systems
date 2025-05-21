@@ -6,10 +6,47 @@
   <title>ข่าวประชาสัมพันธ์ | ECA-Systems</title>
   <link rel="stylesheet" href="style.css">
   <style>
-    main {
-      max-width: 800px;
-      margin: auto;
-      padding: 2rem;
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    .container {
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    
+    @media (min-width: 576px) {
+        .container {
+            max-width: 540px;
+        }
+    }
+    
+    @media (min-width: 768px) {
+        .container {
+            max-width: 720px;
+        }
+    }
+    
+    @media (min-width: 992px) {
+        .container {
+            max-width: 960px;
+        }
+    }
+    
+    @media (min-width: 1200px) {
+        .container {
+            max-width: 1140px;
+        }
+    }
+    
+    @media (min-width: 1400px) {
+        .container {
+            max-width: 1320px;
+        }
     }
     .news-item {
       border-bottom: 1px solid #ccc;
@@ -36,7 +73,7 @@
     <p>คณะกรรมการการเลือกตั้ง สาธารณรัฐอาร์ลิงตัน</p>
   </header>
 
-  <main>
+  <main class="container">
     <section class="news-item">
       <h3>📌 ประกาศวันเลือกตั้งระดับท้องถิ่น</h3>
       <p class="date">ประกาศเมื่อ: 20 พฤษภาคม 2025</p>
