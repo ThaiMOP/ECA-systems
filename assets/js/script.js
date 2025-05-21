@@ -1,16 +1,15 @@
-// เลือก toggle ทุกตัว (ไอคอนหมวดหลัก)
 document.querySelectorAll('.toggle').forEach(toggle => {
   toggle.addEventListener('click', () => {
-    const parentLi = toggle.parentElement; // <li> ที่คลิก
+    const parentLi = toggle.closest('li');
 
-    // ปิด <li> ทุกตัวใน .sitemap ก่อน
+    // ปิดหมวดอื่น ๆ
     document.querySelectorAll('.sitemap > li').forEach(li => {
       if (li !== parentLi) {
         li.classList.remove('open');
       }
     });
 
-    // toggle class 'open' เฉพาะที่คลิก
+    // toggle เปิด/ปิด เฉพาะตัวที่คลิก
     parentLi.classList.toggle('open');
   });
 });
