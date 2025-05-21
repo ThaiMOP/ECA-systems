@@ -1,24 +1,62 @@
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-  font-family: "Anuphan", sans-serif;
-  background: #f4f6f9;
-  color: #333;
+    font-family: "Anuphan", sans-serif;
+    background: #f4f6f9;
+    color: #333;
+}
+
+.container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+@media (min-width: 576px) {
+    .container {
+        max-width: 540px;
+    }
+}
+
+@media (min-width: 768px) {
+    .container {
+        max-width: 720px;
+    }
+}
+
+@media (min-width: 992px) {
+    .container {
+        max-width: 960px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1140px;
+    }
+}
+
+@media (min-width: 1400px) {
+    .container {
+        max-width: 1320px;
+    }
 }
 
 header {
-  background: #1e3a8a;
-  color: white;
-  padding: 1.5rem;
-  text-align: center;
+    background: #1e3a8a;
+    color: white;
+    padding: 1.5rem;
+    text-align: center;
 }
 
 main {
-  padding: 2rem;
+    padding: 2rem;
 }
 
 ul {
@@ -30,47 +68,51 @@ li {
 }
 
 ul.sitemap {
-  list-style-type: none;
-  padding-left: 0;
+    list-style-type: none;
+    padding-left: 0;
 }
 
 ul.sitemap li {
-  margin-bottom: 0.5rem;
+    margin-bottom: 0.5rem;
 }
 
 ul li a:link {
-  color: #1e40af;       /* สีลิงก์ที่ยังไม่คลิก */
-  text-decoration: none;
-  font-weight: bold;
+    color: #1e40af;
+    /* สีลิงก์ที่ยังไม่คลิก */
+    text-decoration: none;
+    font-weight: bold;
 }
 
 ul li a:visited {
-  color: #6b7280;       /* สีลิงก์ที่เคยคลิก */
+    color: #6b7280;
+    /* สีลิงก์ที่เคยคลิก */
 }
 
 ul li a:hover {
-  color: #ef4444;       /* สีลิงก์เมื่อเมาส์ชี้ */
-  text-decoration: underline;
+    color: #ef4444;
+    /* สีลิงก์เมื่อเมาส์ชี้ */
+    text-decoration: underline;
 }
 
 ul li a:active {
-  color: #10b981;       /* สีลิงก์ขณะคลิก */
+    color: #10b981;
+    /* สีลิงก์ขณะคลิก */
 }
 
 
 .sitemap li ul {
-  display: none;
-  padding-left: 1em;
+    display: none;
+    padding-left: 1em;
 }
 
-.sitemap li.open > ul {
-  display: block;
+.sitemap li.open>ul {
+    display: block;
 }
 
 .toggle {
-  cursor: pointer;
-  font-weight: bold;
-  color: #1e40af;
+    cursor: pointer;
+    font-weight: bold;
+    color: #1e40af;
 }
 
 /* .toggle:hover {
@@ -78,9 +120,9 @@ ul li a:active {
 } */
 
 footer {
-  background: #1e3a8a;
-  color: white;
-  text-align: center;
-  padding: 1rem;
-  margin-top: 2rem;
+    background: #1e3a8a;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    margin-top: 2rem;
 }
