@@ -21,6 +21,14 @@ main {
   padding: 2rem;
 }
 
+ul {
+    padding: 5px;
+}
+
+li {
+    list-style: none;
+}
+
 ul.sitemap {
   list-style-type: none;
   padding-left: 0;
