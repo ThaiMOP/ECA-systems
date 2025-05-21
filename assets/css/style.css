@@ -50,12 +50,12 @@ ul li a:active {
 }
 
 
-ul.sitemap ul {
-  margin-left: 1.5rem;
+.sitemap li ul {
   display: none;
+  padding-left: 1em;
 }
 
-ul.sitemap li.open > ul {
+.sitemap li.open > ul {
   display: block;
 }
 
@@ -65,9 +65,9 @@ ul.sitemap li.open > ul {
   color: #1e40af;
 }
 
-.toggle:hover {
+/* .toggle:hover {
   text-decoration: underline;
-}
+} */
 
 footer {
   background: #1e3a8a;
