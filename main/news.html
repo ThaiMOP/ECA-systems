@@ -41,6 +41,17 @@
       background-color: #374abe;
     }
     
+    .page {
+        z-index: 99;
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100vh;
+        background: #1e40afd9;
+    }
+    
     .loader {
       border: 8px solid #f3f3f3;
       border-top: 8px solid #3498db;
@@ -48,7 +59,6 @@
       width: 60px;
       height: 60px;
       animation: spin 1s linear infinite;
-      margin: 50px auto;
     }
   
     @keyframes spin {
@@ -58,8 +68,9 @@
   </style>
 </head>
 <body>
-  <!-- 🔁 Loader -->
-  <div id="loader" class="loader"></div>
+  <div class="page">
+      <div id="loader" class="loader"></div>
+  </div>
   <header>
     <h1>ข่าวประชาสัมพันธ์</h1>
     <p>คณะกรรมการการเลือกตั้ง สาธารณรัฐอาร์ลิงตัน</p>
@@ -67,13 +78,6 @@
 
   <main class="container">
     <a href="/" class="btn-back">← กลับหน้าหลัก</a>
-
-    <section class="news-item">
-      <h3>✅ ระบบ ECA-Systems พร้อมใช้งานแล้ว</h3>
-      <p class="date">ประกาศเมื่อ: 10 พฤษภาคม 2025</p>
-      <p class="summary">ระบบจัดการเลือกตั้งออนไลน์ ECA-Systems พร้อมให้เจ้าหน้าที่และประชาชนใช้งานได้แล้ววันนี้...</p>
-      <a href="#">อ่านเพิ่มเติม</a>
-    </section>
   </main>
 
   <footer>
