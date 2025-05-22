@@ -68,8 +68,8 @@
   </style>
 </head>
 <body>
-  <div class="page">
-      <div id="loader" class="loader"></div>
+  <div id="loader" class="page">
+      <div class="loader"></div>
   </div>
   <header>
     <h1>ข่าวประชาสัมพันธ์</h1>
@@ -90,29 +90,25 @@
     const mainContainer = document.querySelector("main.container");
     const loader = document.getElementById("loader");
   
-    // ดึงข้อมูลจาก Google Apps Script URL
     fetch("https://script.google.com/macros/s/AKfycbxF3UU2SHJbuhXX9bO8hj8XKEgPhJzTFHKV7JwWr3uaV_LIsG5SVG9Dtw3XodwpjrQ/exec")
       .then(response => response.json())
       .then(data => {
-        for (const sectionKey in data) {
-          const sectionList = data[sectionKey];
+        const newsList = data.news;
   
-          if (Array.isArray(sectionList) && sectionList.length > 0) {
-            sectionList.forEach(item => {
-              const section = document.createElement("section");
-              section.className = "news-item";
-              section.innerHTML = `
-                <h3>${item.title}</h3>
-                <p class="date">ประกาศเมื่อ: ${item.date}</p>
-                <p class="summary">${item.detail}</p>
-                <a href="${item.link}">อ่านเพิ่มเติม</a>
-              `;
-              mainContainer.appendChild(section);
-            });
-          }
+        if (Array.isArray(newsList) && newsList.length > 0) {
+          newsList.forEach(item => {
+            const section = document.createElement("section");
+            section.className = "news-item";
+            section.innerHTML = `
+              <h3>${item.title}</h3>
+              <p class="date">ประกาศเมื่อ: ${item.date}</p>
+              <p class="summary">${item.detail}</p>
+              <a href="${item.link}">อ่านเพิ่มเติม</a>
+            `;
+            mainContainer.appendChild(section);
+          });
         }
   
-        // ✅ ซ่อน Loader หลังโหลดเสร็จ
         loader.style.display = "none";
       })
       .catch(error => {
@@ -120,6 +116,7 @@
         loader.textContent = "ไม่สามารถโหลดข้อมูลได้";
       });
   </script>
+
 
 </body>
 </html>
