@@ -56,21 +56,29 @@
   <div id="loader" class="page">
       <div class="loader"></div>
   </div>
-
-  <h1>ค้นหาผู้สมัคร</h1>
-
-  <div class="filters">
-    <select id="typeFilter">
-      <option value="">-- เลือกประเภท --</option>
-    </select>
-    <select id="setFilter">
-      <option value="">-- เลือกชุด --</option>
-    </select>
-    <input type="text" id="searchInput" placeholder="ค้นหาชื่อหรือพรรค">
-  </div>
-
-  <div id="candidateList" class="candidate-grid"></div>
-
+  <header>
+    <h1>แผนผังเว็บไซต์ ECA-Systems</h1>
+    <p>คณะกรรมการการเลือกตั้ง สาธารณรัฐอาร์ลิงตัน</p>
+  </header>
+  <main class="container">
+    <h1>ค้นหาผู้สมัคร</h1>
+  
+    <div class="filters">
+      <select id="typeFilter">
+        <option value="">-- เลือกประเภท --</option>
+      </select>
+      <select id="setFilter">
+        <option value="">-- เลือกชุด --</option>
+      </select>
+      <input type="text" id="searchInput" placeholder="ค้นหาชื่อหรือพรรค">
+    </div>
+  
+    <div id="candidateList" class="candidate-grid"></div>
+  </main>
+  <footer>
+    <p>© 2025 คณะกรรมการการเลือกตั้งแห่งสาธารณรัฐอาร์ลิงตัน</p>
+  </footer>
+  
   <script>
     const loader = document.getElementById("loader");
     const candidateList = document.getElementById("candidateList");
