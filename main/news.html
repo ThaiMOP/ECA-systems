@@ -40,10 +40,26 @@
     .btn-back:hover {
       background-color: #374abe;
     }
+    
+    .loader {
+      border: 8px solid #f3f3f3;
+      border-top: 8px solid #3498db;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      animation: spin 1s linear infinite;
+      margin: 50px auto;
+    }
+  
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
   </style>
 </head>
 <body>
-
+  <!-- 🔁 Loader -->
+  <div id="loader" class="loader"></div>
   <header>
     <h1>ข่าวประชาสัมพันธ์</h1>
     <p>คณะกรรมการการเลือกตั้ง สาธารณรัฐอาร์ลิงตัน</p>
@@ -63,6 +79,43 @@
   <footer>
     <p>&copy; 2025 คณะกรรมการการเลือกตั้งแห่งสาธารณรัฐอาร์ลิงตัน</p>
   </footer>
+  
+  <!-- 🧠 JavaScript -->
+  
+  <script>
+    const mainContainer = document.querySelector("main.container");
+    const loader = document.getElementById("loader");
+  
+    // ดึงข้อมูลจาก Google Apps Script URL
+    fetch("https://script.google.com/macros/s/AKfycbxF3UU2SHJbuhXX9bO8hj8XKEgPhJzTFHKV7JwWr3uaV_LIsG5SVG9Dtw3XodwpjrQ/exec")
+      .then(response => response.json())
+      .then(data => {
+        for (const sectionKey in data) {
+          const sectionList = data[sectionKey];
+  
+          if (Array.isArray(sectionList) && sectionList.length > 0) {
+            sectionList.forEach(item => {
+              const section = document.createElement("section");
+              section.className = "news-item";
+              section.innerHTML = `
+                <h3>${item.title}</h3>
+                <p class="date">ประกาศเมื่อ: ${item.date}</p>
+                <p class="summary">${item.detail}</p>
+                <a href="${item.link}">อ่านเพิ่มเติม</a>
+              `;
+              mainContainer.appendChild(section);
+            });
+          }
+        }
+  
+        // ✅ ซ่อน Loader หลังโหลดเสร็จ
+        loader.style.display = "none";
+      })
+      .catch(error => {
+        console.error("เกิดข้อผิดพลาดในการโหลดข้อมูล:", error);
+        loader.textContent = "ไม่สามารถโหลดข้อมูลได้";
+      });
+  </script>
 
 </body>
 </html>
