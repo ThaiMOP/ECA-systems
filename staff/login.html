@@ -99,5 +99,34 @@
     <a href="../index.html" class="btn-back">← กลับหน้าหลัก</a>
   </main>
 
+  <script>
+    let loginData = [];
+  
+    fetch("https://script.google.com/macros/s/AKfycbxF3UU2SHJbuhXX9bO8hj8XKEgPhJzTFHKV7JwWr3uaV_LIsG5SVG9Dtw3XodwpjrQ/exec")
+      .then(response => response.json())
+      .then(data => {
+        loginData = data.login || [];
+      });
+  
+    // ตรวจสอบการเข้าสู่ระบบเมื่อส่งฟอร์ม
+    document.querySelector("form").addEventListener("submit", function (e) {
+      e.preventDefault();
+  
+      const username = document.getElementById("username").value.trim();
+      const password = document.getElementById("password").value.trim();
+  
+      const found = loginData.find(user => user.username === username && user.password === password);
+  
+      if (found) {
+        alert("เข้าสู่ระบบสำเร็จ!");
+        // คุณสามารถ redirect ได้ เช่น:
+        // window.location.href = "/dashboard.html";
+      } else {
+        alert("ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง");
+      }
+    });
+  </script>
+
+
 </body>
 </html>
