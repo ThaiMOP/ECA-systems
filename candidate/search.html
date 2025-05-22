@@ -74,20 +74,77 @@
   <script>
     const loader = document.getElementById("loader");
     const candidateList = document.getElementById("candidateList");
+    const typeFilter = document.getElementById("typeFilter");
+    const setFilter = document.getElementById("setFilter");
+    const searchInput = document.getElementById("searchInput");
   
-    // แสดง Loader ก่อนโหลด
+    let allCandidates = [];
+  
+    function populateFilters(data) {
+      const types = [...new Set(data.map(c => c.type))];
+      const sets = [...new Set(data.map(c => c.set))];
+  
+      types.forEach(t => {
+        const opt = document.createElement("option");
+        opt.value = t;
+        opt.textContent = t;
+        typeFilter.appendChild(opt);
+      });
+  
+      sets.forEach(s => {
+        const opt = document.createElement("option");
+        opt.value = s;
+        opt.textContent = s;
+        setFilter.appendChild(opt);
+      });
+    }
+  
+    function renderCandidates(data) {
+      candidateList.innerHTML = "";
+      data.forEach(c => {
+        const box = document.createElement("div");
+        box.className = "candidate-box";
+        box.innerHTML = `
+          <img src="${c.imageUrl || 'https://via.placeholder.com/300x200'}" alt="${c.nameCandidate}">
+          <h3>${c.nameCandidate}</h3>
+          <p><strong>พรรค:</strong> ${c.nameParty}</p>
+          <p><strong>ประเภท:</strong> ${c.type}</p>
+          <p><strong>ชุด:</strong> ${c.set}</p>
+        `;
+        candidateList.appendChild(box);
+      });
+    }
+  
+    function filterCandidates() {
+      const type = typeFilter.value.toLowerCase();
+      const set = setFilter.value.toLowerCase();
+      const keyword = searchInput.value.toLowerCase();
+  
+      const filtered = allCandidates.filter(c => {
+        return (
+          (type === "" || c.type.toLowerCase() === type) &&
+          (set === "" || c.set.toLowerCase() === set) &&
+          (c.nameCandidate.toLowerCase().includes(keyword) || c.nameParty.toLowerCase().includes(keyword))
+        );
+      });
+  
+      renderCandidates(filtered);
+    }
+  
+    typeFilter.addEventListener("change", filterCandidates);
+    setFilter.addEventListener("change", filterCandidates);
+    searchInput.addEventListener("input", filterCandidates);
+  
+    // Loader แสดงก่อนโหลดข้อมูล
     loader.style.display = "block";
     candidateList.style.display = "none";
   
     fetch("https://script.google.com/macros/s/AKfycbxF3UU2SHJbuhXX9bO8hj8XKEgPhJzTFHKV7JwWr3uaV_LIsG5SVG9Dtw3XodwpjrQ/exec")
       .then(res => res.json())
       .then(data => {
-        const allCandidates = data.candidate || [];
-  
+        allCandidates = data.candidate || [];
         populateFilters(allCandidates);
         renderCandidates(allCandidates);
-  
-        // ซ่อน Loader หลังโหลดเสร็จ
         loader.style.display = "none";
         candidateList.style.display = "grid";
       })
@@ -96,6 +153,7 @@
         loader.innerHTML = "<p>ไม่สามารถโหลดข้อมูลได้</p>";
       });
   </script>
+
 
 
 </body>
