@@ -1,0 +1,11 @@
+main.container {
+    max-height: calc(100vh - 214px);
+    overflow: auto;
+    margin: 25px auto;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
