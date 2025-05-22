@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ค้นหาผู้สมัคร | ECA-Systems</title>
+  <link href="https://fonts.googleapis.com/css2?family=Anuphan:wght@100..700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/data.css">
+  <style>
+
+    .filters {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .filters input, .filters select {
+      padding: 0.5rem;
+      font-size: 1rem;
+    }
+
+    .candidate-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1rem;
+    }
+
+    .candidate-box {
+      background: white;
+      padding: 1rem;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+      text-align: center;
+    }
+
+    .candidate-box img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    .candidate-box h3 {
+      margin-top: 0.75rem;
+      font-size: 1.1rem;
+    }
+
+    .candidate-box p {
+      margin: 0.25rem 0;
+    }
+  </style>
+</head>
+<body>
+  <div id="loader" class="page">
+      <div class="loader"></div>
+  </div>
+
+  <h1>ค้นหาผู้สมัคร</h1>
+
+  <div class="filters">
+    <select id="typeFilter">
+      <option value="">-- เลือกประเภท --</option>
+    </select>
+    <select id="setFilter">
+      <option value="">-- เลือกชุด --</option>
+    </select>
+    <input type="text" id="searchInput" placeholder="ค้นหาชื่อหรือพรรค">
+  </div>
+
+  <div id="candidateList" class="candidate-grid"></div>
+
+  <script>
+    const loader = document.getElementById("loader");
+    const candidateList = document.getElementById("candidateList");
+  
+    // แสดง Loader ก่อนโหลด
+    loader.style.display = "block";
+    candidateList.style.display = "none";
+  
+    fetch("https://script.google.com/macros/s/AKfycbxF3UU2SHJbuhXX9bO8hj8XKEgPhJzTFHKV7JwWr3uaV_LIsG5SVG9Dtw3XodwpjrQ/exec")
+      .then(res => res.json())
+      .then(data => {
+        const allCandidates = data.candidate || [];
+  
+        populateFilters(allCandidates);
+        renderCandidates(allCandidates);
+  
+        // ซ่อน Loader หลังโหลดเสร็จ
+        loader.style.display = "none";
+        candidateList.style.display = "grid";
+      })
+      .catch(error => {
+        console.error("Error loading data:", error);
+        loader.innerHTML = "<p>ไม่สามารถโหลดข้อมูลได้</p>";
+      });
+  </script>
+
+
+</body>
+</html>
