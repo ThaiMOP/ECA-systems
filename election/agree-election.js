@@ -1,7 +1,7 @@
 // ✅ สถานะเปิด/ปิดของการเลือกตั้งแต่ละประเภท
 const electionStatus = {
-  generalElection: false, // ❌ ปิด
-  hrElection: true,       // ✅ เปิด
+  generalElection: true, // ❌ ปิด
+  hrElection: false,       // ✅ เปิด
   senateElection: false   // ❌ ปิด
 };
 
