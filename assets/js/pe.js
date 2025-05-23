@@ -71,7 +71,7 @@ document.getElementById("form").addEventListener("submit", function (e) {
       document.getElementById("form").reset();
 
       setTimeout(function () {
-        window.location.href = "/election/hrz.html";
+        window.location.href = "/election/general/hrz.html";
       }, 500);
     })
     .catch(function (error) {
