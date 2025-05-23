@@ -115,25 +115,35 @@
     <script src="/assets/js/pe.js"></script>
     <script>
       document.addEventListener("DOMContentLoaded", () => {
-        const user = JSON.parse(localStorage.getItem("loggedUser"));
-    
-        if (user) {
-          // เติมชื่อ นามสกุล
+          const user = JSON.parse(localStorage.getItem("loggedUser"));
+        
+          if (!user) {
+            // ถ้าไม่มีข้อมูลผู้ใช้ ให้ไปหน้า login
+            window.location.href = "/login.html";
+            return;
+          }
+        
+          // สมมติชื่อฟิลด์ในฟอร์มตรงกับ key ใน user object
+          Object.entries(user).forEach(([key, value]) => {
+            // หา input ที่มี id หรือ name ตรงกับ key
+            const input = document.querySelector(`input[id="${key}"], input[name="${key}"]`);
+            if (input) {
+              input.value = value;
+            }
+          });
+        
+          // กรณีฟิลด์ในฟอร์มไม่ตรงชื่อ key, เติมเองได้ เช่น name = fname + lname
           const nameInput = document.getElementById("name");
           if (nameInput) {
-            nameInput.value = `${user.fname} ${user.lname}`;
+            nameInput.value = `${user.fname || ''} ${user.lname || ''}`.trim();
           }
-    
-          // เติม UID Discord (ใช้ user.id หรือ user.username ตามข้อมูลที่เก็บไว้)
+        
           const uidInput = document.getElementById("uid");
           if (uidInput) {
             uidInput.value = user.id || user.username || '';
           }
-        } else {
-          // หากไม่มีข้อมูลผู้ใช้ ให้ redirect ไปหน้า login
-          window.location.href = "/login.html";
-        }
-      });
+        });
+
     </script>
     
 </body>
