@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Discord Login Callback</title>
+  <link rel="icon" href="https://rep-arlington.pages.dev/assets/img/eca.png" type="image/gif" sizes="16x16">
+  <link href="https://fonts.googleapis.com/css2?family=Anuphan:wght@100..700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://rep-arlington.pages.dev/election/login/main.css" />
+</head>
+<body>
+  <header>
+    <img class="logo" src="https://rep-arlington.pages.dev/assets/img/logo-eca.png" alt="Logo" />
+    <div class="profile-container" id="profileContainer" style="display: none;">
+      <img class="avatar" id="avatar" src="" alt="Avatar" />
+      <div class="profile-box" id="profileBox">
+        <div id="username" style="margin-bottom: 10px;"></div>
+        <button onclick="logout()">Logout</button>
+      </div>
+    </div>
+  </header>
+
+  <img class="banner" src="https://rep-arlington.pages.dev/assets/img/eca/ELECTION-DASHBOARD.png" alt="Banner" />
+
+  <div class="container">
+    <div class="menu">
+      <button id="generalElection" disabled>เลือกตั้งเป็นการทั่วไป</button>
+      <button id="hrElection" >เลือกตั้งสมาชิกสภาผู้แทนราษฎร</button>
+      <button id="senateElection" disabled>เลือกตั้งวุฒิสภา</button>
+      <button id="report">แจ้งเหตุไม่ไปใช้สิทธิเลือกตั้ง</button>
+      <button id="check">ตรวจสอบสิทธิ์เลือกตั้ง</button>
+    </div>
+  </div>
+  <script src="agree-election.js"></script>
+  <script>
+    // ดึงข้อมูลจาก localStorage
+    const data = JSON.parse(localStorage.getItem("loggedUser"));
+  
+    if (!data) {
+      // ถ้าไม่ได้ login ส่งกลับหน้า login.html
+      window.location.href = "login.html";
+    } else {
+      // แสดงชื่อบนหน้า
+      document.getElementById('username').textContent = `${data.fname} ${data.lname}`;
+      document.getElementById('profileContainer').style.display = 'block';
+  
+      // เปิดปุ่มเลือกตั้งถ้ามีสิทธิ์
+      if (data.right === 'มี') {
+        document.getElementById('generalElection').disabled = false;
+        document.getElementById('hrElection').disabled = false;
+        document.getElementById('senateElection').disabled = false;
+      } else {
+        disableElectionButtons();
+      }
+    }
+  
+    // ปิดทุกปุ่มเลือกตั้ง
+    function disableElectionButtons() {
+      document.getElementById('generalElection').disabled = true;
+      document.getElementById('hrElection').disabled = true;
+      document.getElementById('senateElection').disabled = true;
+    }
+  
+    // ออกจากระบบ
+    function logout() {
+      localStorage.removeItem("loggedUser");
+      window.location.href = "login.html";
+    }
+  
+    // จัดการ dropdown โปรไฟล์
+    const profileContainer = document.getElementById('profileContainer');
+    const profileBox = document.getElementById('profileBox');
+  
+    profileContainer.addEventListener('click', () => {
+      profileBox.classList.toggle('show');
+    });
+  
+    window.addEventListener('click', (e) => {
+      if (!profileContainer.contains(e.target)) {
+        profileBox.classList.remove('show');
+      }
+    });
+  </script>
+
+</body>
+</html>
