@@ -4,19 +4,22 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>เข้าสู่ระบบเลือกตั้ง</title>
+  <link href="https://fonts.googleapis.com/css2?family=Anuphan:wght@100..700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="/assets/css/style.css" />
   <style>
-    body { font-family: sans-serif; padding: 20px; max-width: 400px; margin: auto; }
-    input, button { display: block; width: 100%; margin-top: 10px; padding: 10px; }
+    input, button { display: block; width: 100%; margin-top: 10px; padding: 10px; font-family: inherit; }
     .error { color: red; margin-top: 10px; }
   </style>
 </head>
 <body>
-  <h2>เข้าสู่ระบบเลือกตั้ง</h2>
-  <input type="text" id="username" placeholder="รหัสประจำตัว (ID)">
-  <input type="password" id="password" placeholder="รหัสผ่าน">
-  <button id="loginBtn">เข้าสู่ระบบ</button>
-  <div class="error" id="errorMsg"></div>
-
+    <main class="container">
+      <h2>เข้าสู่ระบบเลือกตั้ง</h2>
+      <input type="text" id="username" placeholder="รหัสประจำตัว (ID)">
+      <input type="password" id="password" placeholder="รหัสผ่าน">
+      <button id="loginBtn">เข้าสู่ระบบ</button>
+      <div class="error" id="errorMsg"></div>
+    </main>
   <script>
     const loginBtn = document.getElementById("loginBtn");
     const errorMsg = document.getElementById("errorMsg");
