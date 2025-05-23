@@ -30,43 +30,65 @@
       <button id="check">ตรวจสอบสิทธิ์เลือกตั้ง</button>
     </div>
   </div>
-  <script src="agree-election.js"></script>
   <script>
-    // ดึงข้อมูลจาก localStorage
+    // 1. Mapping ปุ่มไปยังหน้าปลายทาง
+    const redirectMap = {
+      generalElection: '/election/ge.html',
+      hrElection: '/election/hre.html',
+      senateElection: '/election/se.html',
+      report: '/election/event',
+      check: '/election/enqelection-local'
+    };
+  
+    // 2. ดึงข้อมูลผู้ใช้จาก localStorage
     const data = JSON.parse(localStorage.getItem("loggedUser"));
   
     if (!data) {
-      // ถ้าไม่ได้ login ส่งกลับหน้า login.html
+      // ถ้าไม่มีข้อมูลผู้ใช้ ให้กลับไปหน้า login
       window.location.href = "login.html";
     } else {
-      // แสดงชื่อบนหน้า
+      // แสดงชื่อ
       document.getElementById('username').textContent = `${data.fname} ${data.lname}`;
       document.getElementById('profileContainer').style.display = 'block';
   
-      // เปิดปุ่มเลือกตั้งถ้ามีสิทธิ์
+      // 3. กำหนดสิทธิ์ปุ่มเลือกตั้ง
       if (data.right === 'มี') {
-        document.getElementById('generalElection').disabled = false;
-        document.getElementById('hrElection').disabled = false;
-        document.getElementById('senateElection').disabled = false;
+        enableElectionButtons();
       } else {
         disableElectionButtons();
       }
     }
   
-    // ปิดทุกปุ่มเลือกตั้ง
-    function disableElectionButtons() {
-      document.getElementById('generalElection').disabled = true;
-      document.getElementById('hrElection').disabled = true;
-      document.getElementById('senateElection').disabled = true;
+    // 4. ฟังก์ชันเปิดปุ่ม
+    function enableElectionButtons() {
+      Object.keys(redirectMap).forEach(id => {
+        const btn = document.getElementById(id);
+        if (btn) {
+          btn.disabled = false;
+          btn.addEventListener('click', () => {
+            window.location.href = redirectMap[id];
+          });
+        }
+      });
     }
   
-    // ออกจากระบบ
+    // 5. ฟังก์ชันปิดปุ่ม
+    function disableElectionButtons() {
+      Object.keys(redirectMap).forEach(id => {
+        const btn = document.getElementById(id);
+        if (btn) {
+          btn.disabled = true;
+        }
+      });
+    }
+  
+    // 6. Logout
     function logout() {
       localStorage.removeItem("loggedUser");
       window.location.href = "login.html";
     }
   
-    // จัดการ dropdown โปรไฟล์
+    // 7. จัดการ dropdown โปรไฟล์
     const profileContainer = document.getElementById('profileContainer');
     const profileBox = document.getElementById('profileBox');
   
@@ -80,6 +102,7 @@
       }
     });
   </script>
+
 
 </body>
 </html>
