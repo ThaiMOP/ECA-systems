@@ -13,7 +13,7 @@
       electionElement.innerHTML = `<h1>ยังไม่ถึงเวลาใช้สิทธิออกเสียงลงคะแนน</h1>`;
     } else if (now >= openTime && now <= closeTime) {
       // อยู่ในช่วงเวลาเลือกตั้ง
-      electionElement.innerHTML = `<div class="eca-btn" onclick="window.location.href='/election/hr-election.html'">เข้าระบบใช้สิทธิเลือกตั้ง</div>`;
+      electionElement.innerHTML = `<div class="eca-btn" onclick="window.location.href='/election/general/pe'">เข้าระบบใช้สิทธิเลือกตั้ง</div>`;
     } else {
       // เลยเวลาเลือกตั้งแล้ว
       electionElement.innerHTML = `<h1>บัดนี้ถึงเวลาปิดการออกเสียงลงคะแนนแล้ว ให้ปิดการออกเสียงลงคะแนน</h1>`;
